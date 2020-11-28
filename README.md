@@ -28,8 +28,8 @@ $ sudo apt install git-all
 
 1. Clone the repo
 ```sh
-$ git clone https://github.com/ra-led/python-remont-api.git
-$ cd python-remont-api
+$ git clone https://github.com/ra-led/lexomizer.git
+$ cd lexomizer
 ```
 2. Install Python packages
 ```sh
