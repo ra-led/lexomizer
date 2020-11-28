@@ -35,22 +35,6 @@ $ cd lexomizer
 ```sh
 $ pip3 install -r requirements.txt
 ```
-3. Download pre-trained weights
-Create model dir and start Python
-```sh
-$ mkdir models
-$ python3
-```
-In Python console run
-```Python
-import gdown
-
-url = 'https://drive.google.com/uc?id=1pewnHlXGvPEd0h6yzueIpKq8hlnmCU-E'
-output = 'models/resnet18_baseline_cpu.torch'
-gdown.download(url, output, quiet=False)
-
-quit()
-```
 
 ### Start server
 
@@ -65,22 +49,33 @@ Alternativly, you can use [Gunicorn](https://gunicorn.org/) WSGI
 Launch `http://{your_host_adres}:5005/`
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## API Usage
 
-- Изменение 
+- Изменение лица повествования с первого на третье
 
-#### /1_to_3 POST
-Params
+#### /api_first_third POST
+JSON Params
 ```
-"text_to_transform" -текст для корректировки
+{
+    "last_name": "Фамилия",
+    "first_name": "Имя",
+    "middle_name": "Отчество",
+    "gender": "m|f",
+    "orig_text":"ИСходный текст"
+}
 ```
-  
+
 Response JSON
 ```
-{"y": "" }
+{"result": "Измененный текст" }
 ```
-  
+
 Example
-```sh
-curl -X POST -? '{"x": "text_to_transform"}' http://127.0.0.1:5005/first_third
+```
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"first_name":"Иван","last_name":"Иванов","middle_name":"Иванович","gender":"m","orig_text":"Благодаря мне этого не случилось"}'
+```
+```json
+{"result": "Благодаря ему этого не случилось"}
 ```

@@ -1,4 +1,3 @@
-import json
 from flask import request, render_template
 from app import app
 from utils import text_staff

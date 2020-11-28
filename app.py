@@ -10,7 +10,7 @@ app.config['trf'] = Transformer(
     alias_maker=PetrovichDeclinationMaker()
 )
 
-from views import first_third
+from views import first_third, api_first_third
 
 @app.route('/')
 def index():
