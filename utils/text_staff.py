@@ -82,6 +82,8 @@ class Person():
         for s in self.morphed_text:
             for token in s:
                 view = token.view
+                if token.view != token.orig:
+                    view = '<span class="w3-blue">' + view + '</span>'
                 view_text.append(view)
         text = ' '.join(view_text)
         # декод замороженных инициалов
