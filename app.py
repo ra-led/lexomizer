@@ -14,4 +14,11 @@ from views import first_third
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template(
+        'index.html',
+        result='',
+        input_text="Введите здесть текст для обработки...",
+        input_first='',
+        input_last='',
+        input_middle=''
+    )

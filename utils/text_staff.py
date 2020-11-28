@@ -67,7 +67,7 @@ class Person():
         
     def print_text(self, orig=False):
         if orig:
-            print(orig_text)
+            print(self.orig_text)
         else:
             view_text = []
             for s in self.morphed_text:
@@ -75,6 +75,14 @@ class Person():
                     view = token.view if token.flags == set() else token.view + f' [{token.lemma}] '
                     view_text.append(view)
             print(' '.join(view_text))
+            
+    def postprocess(self):
+        view_text = []
+        for s in self.morphed_text:
+            for token in s:
+                view = token.view
+                view_text.append(view)
+        return ' '.join(view_text)
         
 
 def parse_text(text, trf):
@@ -139,7 +147,7 @@ def per_1_to_3(author, trf):
                
 
 
-def give_alias(author, case, temp_alias):
+def give_alias(trf, author, case, temp_alias):
     # склонение фамилии
     if case in trf.ALIAS_CASE:
         alias = trf.alias_maker.make(
@@ -164,5 +172,5 @@ def postprocess_alias_1_to_3(author, trf, temp_alias='XXX'):
         confuse = trf.SELF_NPRO_ALIAS['я'][author.gender].normal_form in s_lemmas
         for i, token in enumerate(s):
             if (token.lemma == 'я') & confuse:
-                token.view = give_alias(author, token.case, temp_alias)
+                token.view = give_alias(trf, author, token.case, temp_alias)
     return author

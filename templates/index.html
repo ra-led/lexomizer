@@ -20,10 +20,29 @@
                 <!--h2 class="w3-text-blue">Синтаксический перевод</h2-->
                 <div class="w3-row">
                     <div class="w3-container w3-half">                        
-                        <form class="w3-container" method="POST" action="/demo_url">
+                        <form class="w3-container" method="POST" action="/first_third">
+                            <p>
+                                <label>Имя (в именительном падеже)</label>
+                                <input class="w3-input" type="text" name="first_name", value="{{ input_first | safe }}">
+                            </p>
+                            <p>
+                                <label>Фамилия (в именительном падеже)</label>
+                                <input class="w3-input" type="text" name="last_name" value="{{ input_last | safe }}">
+                            </p>
+                            <p>
+                                <label>Отчество (в именительном падеже)</label>
+                                <input class="w3-input" type="text" name="middle_name" value="{{ input_middle | safe }}">
+                            </p>
+                            <p>
+                                <input class="w3-radio" type="radio" name="gender" value="m" checked>
+                                <label>Муж.</label>
+                                
+                                <input class="w3-radio" type="radio" name="gender" value="f">
+                                <label>Жен.</label>
+                            </p>
                             <p>
                                 <label class="w3-text-grey">Исходный текст</label>
-                                <textarea class="w3-input w3-border"></textarea>
+                                <textarea class="w3-input w3-border" name="orig_text">{{ input_text | safe }}</textarea>
                             </p>
                             <button class="w3-btn w3-blue" type="submit">Преобразовать</button>
                         </form>
@@ -32,7 +51,10 @@
                     <div class="w3-container w3-half">
                         <p>
                             <label class="w3-text-grey">Результат</label>
-                            <textarea class="w3-input w3-border"></textarea>
+                            <div class="w3-card w3-border">
+                                <textarea class="w3-input w3-border" name="orig_text">{{ result | safe }}</textarea>
+
+                            </div>
                         </p>
                     </div>
                 </div>
