@@ -10,7 +10,7 @@ def first_third():
 
     per = text_staff.Person(
         app.config['trf'],
-        orig_text=params['orig_text'].replace('\n', ' '),
+        orig_text=params['orig_text'],
         id_=params['person_id'] if 'person_id' in params else 0,
         gender=params['gender'],
         first_name=params['first_name'],
