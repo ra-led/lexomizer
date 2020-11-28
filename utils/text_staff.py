@@ -163,7 +163,7 @@ def per_1_to_3(author, trf):
                
 
 
-def give_alias(trf, author, case, temp_alias):
+def give_alias(trf, author, case):
     # склонение фамилии
     if case in trf.ALIAS_CASE:
         alias = trf.alias_maker.make(
@@ -178,15 +178,17 @@ def give_alias(trf, author, case, temp_alias):
     if author.short_name:
         alias = alias + ' ' + author.short_name
     else:
-        alias = temp_alias
+        alias = None
     return alias
 
 
-def postprocess_alias_1_to_3(author, trf, temp_alias='XXX'):
+def postprocess_alias_1_to_3(author, trf):
     for s in author.morphed_text:
         s_lemmas = [t.lemma for t in s]
         confuse = trf.SELF_NPRO_ALIAS['я'][author.gender].normal_form in s_lemmas
         for i, token in enumerate(s):
             if (token.lemma == 'я') & confuse:
-                token.view = give_alias(trf, author, token.case, temp_alias)
+                alias = give_alias(trf, author, token.case)
+                if alias:
+                    token.view = alias
     return author
