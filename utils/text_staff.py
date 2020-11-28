@@ -82,10 +82,15 @@ class Person():
             for token in s:
                 view = token.view
                 view_text.append(view)
-        return ' '.join(view_text)
+        text = ' '.join(view_text)
+        # декод замороженных инициалов
+        text = re.sub(r'(« )([А-Я]) (\.) ([А-Я]) (\.) (» )', r'\2\3\4\5 ', text)
+        return text
         
 
 def parse_text(text, trf):
+    # заморозка инициалов
+    text = re.sub('([А-Я]\.[А-Я]\.)', r'«\1»', text)
     qoute = False
     morphed_text = []
     for s_id, s in enumerate(list(sentenize(text))):
