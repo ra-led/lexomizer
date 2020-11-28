@@ -86,10 +86,14 @@ class Person():
         text = ' '.join(view_text)
         # декод замороженных инициалов
         text = re.sub(r'(« )([А-Я]) (\.) ([А-Я]) (\.) (» )', r'\2\3\4\5 ', text)
+        # декод переноса строк
+        text = text.replace(' < nl > ', '\n')
         return text
         
 
 def parse_text(text, trf):
+    # переносы строк
+    text = text.replace('\n', '<nl>')
     # заморозка инициалов
     text = re.sub('([А-Я]\.[А-Я]\.)', r'«\1»', text)
     qoute = False
@@ -103,7 +107,7 @@ def parse_text(text, trf):
                 qoute = False
             sentence.append(
                 Token(w.text, trf.morph.parse(w.text)[0], s_id, w_id, freeze=qoute)
-            )  
+            )
         morphed_text.append(sentence)
     return morphed_text
         
