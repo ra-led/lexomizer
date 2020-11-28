@@ -1,0 +1,44 @@
+# Jupyter Notebook
+.ipynb_checkpoints
+
+__pycache__
+*/__pycache__
+.idea
+.pytest_cache
+error.log
+
+# logs
+*.log
+
+# config
+/conf.yml
+
+utils/black_refacktoring.py
+
+# Firebase
+axe-capital-f17d3-firebase-adminsdk-0ss3d-24f10f8826.json
+
+# Juoyter
+notebooks/*
+
+# keras checpoints
+*.model
+
+# forecast plot
+*notebooks/forecast.html
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# AWS, SSH keys
+*.pem
+*.ppk
+
+*Thumbs.db
+*.DS_Store*

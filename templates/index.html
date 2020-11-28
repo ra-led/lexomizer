@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <title>Sintac translate</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        body,h1 {font-family: "Raleway", sans-serif}
+        body, html {height: 100%}
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <body>
+        <!--div class="w3-content"-->
+            <br>
+            <header class="w3-container w3-blue w3-section">
+              <h1>Синтаксический перевод</h1>
+            </header>
+            <div class="w3-container w3-card-4">
+                <!--h2 class="w3-text-blue">Синтаксический перевод</h2-->
+                <div class="w3-row">
+                    <div class="w3-container w3-half">                        
+                        <form class="w3-container" method="POST" action="/demo_url">
+                            <p>
+                                <label class="w3-text-grey">Исходный текст</label>
+                                <textarea class="w3-input w3-border"></textarea>
+                            </p>
+                            <button class="w3-btn w3-blue" type="submit">Преобразовать</button>
+                        </form>
+                        
+                    </div>
+                    <div class="w3-container w3-half">
+                        <p>
+                            <label class="w3-text-grey">Результат</label>
+                            <textarea class="w3-input w3-border"></textarea>
+                        </p>
+                    </div>
+                </div>
+                <br><br>
+            </div>
+        <!--/div-->
+    <script>
+        $('textarea').each(function () {
+          this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+        }).on('input', function () {
+          this.style.height = 'auto';
+          this.style.height = (this.scrollHeight) + 'px';
+        });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,7 @@
+Flask==1.1.1
+PyYAML==3.13
+torch
+torchvision
+Pillow
+requests==2.22.0
+gdown
