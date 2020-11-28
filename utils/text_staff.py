@@ -87,7 +87,7 @@ class Person():
         # декод замороженных инициалов
         text = re.sub(r'(« )([А-Я]) (\.) ([А-Я]) (\.) (» )', r'\2\3\4\5 ', text)
         # декод переноса строк
-        text = text.replace(' < nl > ', '\n')
+        text = text.replace(' < nl > ', '<br>')
         return text
         
 
