@@ -1,4 +1,5 @@
 import re
+import string
 from razdel import sentenize, tokenize
 from pytrovich.enums import NamePart, Gender, Case
 
@@ -90,6 +91,19 @@ class Person():
         text = re.sub(r'(« )([А-Я]) (\.) ([А-Я]) (\.) (» )', r'\2\3\4\5 ', text)
         # декод переноса строк
         text = text.replace(' < nl > ', '<br>')
+        # постпроцессинг токенизации
+        text =  text.replace(' « ', ' «')
+        text =  text.replace(' » ', '» ')
+        text =  text.replace(' ( ', ' (')
+        text =  text.replace(' ) ', ') ')
+        punct = '[%s]' % re.escape(
+            string
+            .punctuation
+            .replace('-', '')
+            .replace('<', '')
+            .replace('>', '')
+        )
+        text = re.sub(f' ({punct}) ', r'\1 ' , text)
         return text
         
 
