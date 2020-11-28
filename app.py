@@ -17,6 +17,7 @@ def index():
     return render_template(
         'index.html',
         result='',
+        input_gender='m',
         input_text="Введите здесть текст для обработки...",
         input_first='',
         input_last='',

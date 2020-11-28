@@ -34,10 +34,10 @@
                                 <input class="w3-input" type="text" name="middle_name" value="{{ input_middle | safe }}">
                             </p>
                             <p>
-                                <input class="w3-radio" type="radio" name="gender" value="m" checked>
+                                <input class="w3-radio" type="radio" name="gender" value="m" {{ 'checked' if input_gender == 'm' else ''}}>
                                 <label>Муж.</label>
                                 
-                                <input class="w3-radio" type="radio" name="gender" value="f">
+                                <input class="w3-radio" type="radio" name="gender" value="f" {{ 'checked' if input_gender == 'f' else ''}}>
                                 <label>Жен.</label>
                             </p>
                             <p>

@@ -23,6 +23,7 @@ def first_third():
     return render_template(
         'index.html',
         result=per.postprocess(),
+        input_gender=params['gender'],
         input_text=params['orig_text'],
         input_first=params['first_name'],
         input_last=params['last_name'],
