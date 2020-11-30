@@ -144,7 +144,7 @@ def per_1_to_3(author, trf):
                 if (prefix[1] == 'PREP') & ('GRND' not in prefix_omonims):
                     # исключение "мне" в Предложном падеже
                     # если местоимение в дательном падеже, но предлоги на это не указывают
-                    if (prefix[0].lower() not in ['ко', 'по']) & (token.case == 'datv'):
+                    if (token.lemma == 'я') & (prefix[0].lower() not in ['ко', 'по']) & (token.case == 'datv'):
                         token.case = 'loct'
                     token.view = new_token.inflect({token.case, 'Af-p'}).word
                     token.flags.add(f'{token.orig} -> {token.view}') # DEBUG
