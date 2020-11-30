@@ -171,8 +171,12 @@ def per_1_to_3(author, trf):
                     token.view = new_w.word
                     token.flags.add(f'{token.orig} -> {token.view}') # DEBUG
             prefix = (token.view, token.pos, 'Vpre' in token.morph_word.tag)
+            # если токен в цитате
             if token.freeze:
                 token.view = token.orig
+            # вернуть заглавную букву
+            if token.orig[0].isupper():
+                token.view = token.view[0].upper() + token.view[1:]
     return author
                
 
