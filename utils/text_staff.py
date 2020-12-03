@@ -180,7 +180,6 @@ def per_1_to_3(author, trf):
     return author
                
 
-
 def give_alias(trf, author, case):
     # склонение фамилии
     if case in trf.ALIAS_CASE:
