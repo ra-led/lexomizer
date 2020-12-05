@@ -81,17 +81,26 @@ class Person():
     def postprocess(self, api=False):
         view_text = []
         for s in self.morphed_text:
+            doub_qoutes = 0
             for token in s:
                 view = token.view
                 if (token.view != token.orig) & (not api):
                     view = '<span class="w3-blue">' + view + '</span>'
+                # замена двойных ковычек на открытые - закрытые
+                if token.view == '"':
+                    doub_qoutes += 1
+                    view = '«' if (doub_qoutes % 2) == 1 else '»'
                 view_text.append(view)
         text = ' '.join(view_text)
         # декод замороженных инициалов
         text = re.sub(r'(« )([А-Я]) (\.) ([А-Я]) (\.) (» )', r'\2\3\4\5 ', text)
         # декод переноса строк
-        text = text.replace(' < nl > ', '<br>')
+        text = text.replace('< nl > ', '<br>')
         # постпроцессинг токенизации
+        text =  text.replace(' » .', '».')
+        text =  text.replace(' » , ', '», ')
+        text =  text.replace(' ) . ', '). ')
+        text =  text.replace(' ) , ', '), ')
         text =  text.replace(' « ', ' «')
         text =  text.replace(' » ', '» ')
         text =  text.replace(' ( ', ' (')
@@ -117,9 +126,9 @@ def parse_text(text, trf):
     for s_id, s in enumerate(list(sentenize(text))):
         sentence = []
         for w_id, w in enumerate(list(tokenize(s.text))):
-            if (not qoute) & (w.text == '«'):
+            if (not qoute) & (w.text in ['«', '"']):
                 qoute = True
-            if qoute & (w.text == '»'):
+            elif qoute & (w.text in ['»', '"']):
                 qoute = False
             sentence.append(
                 Token(w.text, trf.morph.parse(w.text)[0], s_id, w_id, freeze=qoute)
