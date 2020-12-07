@@ -103,6 +103,7 @@ class Person():
         text =  text.replace(' ) , ', '), ')
         text =  text.replace(' « ', ' «')
         text =  text.replace(' » ', '» ')
+        text =  text.replace(' »', '»')
         text =  text.replace(' ( ', ' (')
         text =  text.replace(' ) ', ') ')
         punct = '[%s]' % re.escape(
@@ -113,6 +114,7 @@ class Person():
             .replace('>', '')
         )
         text = re.sub(f' ({punct}) ', r'\1 ' , text)
+        text = re.sub(f' ({punct})', r'\1' , text)
         return text
         
 
