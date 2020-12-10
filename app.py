@@ -6,8 +6,8 @@ from pytrovich.maker import PetrovichDeclinationMaker
 
 app = Flask(__name__)
 app.config['trf'] = Transformer(
-    morph=pymorphy2.MorphAnalyzer(),
-    alias_maker=PetrovichDeclinationMaker()
+    morph=pymorphy2.MorphAnalyzer('models/morph_data'),
+    alias_maker=PetrovichDeclinationMaker('models/rules.json')
 )
 
 from views import first_third, api_first_third
